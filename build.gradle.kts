@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.plugin"
-version = "1.0"
+version = "1.2"
 
 repositories {
     mavenCentral()
@@ -15,17 +15,14 @@ dependencies {
     implementation("org.jsoup:jsoup:1.15.3")
 }
 
-// Configure Gradle IntelliJ Plugin
-// Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
     version.set("2022.2.5")
-    type.set("IC") // Target IDE Platform
+    type.set("IC")
 
     plugins.set(listOf())
 }
 
 tasks {
-    // Set the JVM compatibility versions
     withType<JavaCompile> {
         sourceCompatibility = "17"
         targetCompatibility = "17"
@@ -36,7 +33,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("222")
-        untilBuild.set("232.*")
+        untilBuild.set("233.*")
     }
 
     signPlugin {

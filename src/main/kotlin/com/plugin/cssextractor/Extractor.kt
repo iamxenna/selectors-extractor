@@ -9,7 +9,7 @@ import org.jsoup.Jsoup
 import org.jsoup.parser.Parser
 import java.awt.datatransfer.StringSelection
 
-class Extractor : AnAction("Extract CSS", "Extract CSS selectors from JSX", IconLoader.getIcon("/logo/small.svg", Extractor::class.java)) {
+class Extractor : AnAction("Extract Selectors", "Extract selectors from JSX and HTML", IconLoader.getIcon("/logo/small.svg", Extractor::class.java)) {
 
     override fun actionPerformed(event: AnActionEvent) {
         val editor = event.getData(CommonDataKeys.EDITOR)
@@ -23,10 +23,22 @@ class Extractor : AnAction("Extract CSS", "Extract CSS selectors from JSX", Icon
     }
 
     private fun extractCssSelectors(text: String, isJsx: Boolean): Set<String> {
-        val doc = if (isJsx) Jsoup.parse(text, "", Parser.xmlParser()) else Jsoup.parse(text)
-        val elements = doc.select(if (isJsx) "[class], [className]" else "[class]")
+        val doc = if (isJsx) {
+            Jsoup.parse(text, "", Parser.xmlParser())
+        } else {
+            Jsoup.parse(text)
+        }
+        val elements = doc.select(if (isJsx) {
+            "[class], [className]"
+        } else {
+            "[class]"
+        })
         return elements.flatMap { element ->
-            val classNames = if (isJsx) element.attr("className").split("\\s+".toRegex()) else element.classNames()
+            val classNames = if (isJsx) {
+                element.attr("className").split("\\s+".toRegex())
+            } else {
+                element.classNames()
+            }
             classNames.map { className ->
                 if (className.contains("styles")) {
                     className.substringAfter("styles.").replace(Regex("[{}'\"`]"), "").trim()
