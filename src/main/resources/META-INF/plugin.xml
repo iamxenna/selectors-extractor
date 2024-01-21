@@ -1,0 +1,38 @@
+<idea-plugin>
+    <id>com.plugin.cssextractor</id>
+
+    <actions>
+        <action id="Extractor" class="com.plugin.cssextractor.Extractor" text="Show Hello Message" description="A sample action to show a message">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+
+    <name>CSS Extractor</name>
+
+    <vendor email="vanya.tar@gmail.com" url="https://github.com/iamxenna">xennaska</vendor>
+
+    <description>
+    <![CDATA[
+    <b>CSS Selector Extractor</b><br><br>
+    <b>Description:</b><br>
+    CSS Extractor is a powerful IntelliJ IDEA plugin designed to streamline the process of working with CSS in projects involving HTML and JSX.<br><br>
+    <b>Key Features:</b><br>
+    <b>Selector Extraction:</b> Analyzes HTML or JSX code and extracts class selectors.<br>
+    <b>Clipboard Copying:</b> Extracted selectors are formatted and copied to the clipboard.<br>
+    <b>Supports Multiple Formats:</b> Works with both HTML and JSX.<br><br>
+    <b>Usage Scenario:</b><br>
+    Ideal for web developers and front-end engineers.<br><br>
+    <b>Easy to Use:</b><br>
+    Extract CSS selectors directly from your code with a simple right-click.<br><br>
+    <b>Installation:</b><br>
+    Install from the JetBrains products plugin marketplace.
+    ]]>
+    </description>
+
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+
+    </extensions>
+</idea-plugin>
